@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../Frontend')));
 // =========================================================================
 // IMPORTAZIONE MODELLO (Ora che l'ambiente e 'app' sono pronti, importiamo User)
 // =========================================================================
-const User = require('./user'); 
+const User = require('./models/user'); 
 
 // ==========================================
 // ROTTA DI REGISTRAZIONE (POST)
@@ -62,12 +62,23 @@ app.post('/api/registrazione', async (req, res) => {
 });
 // ==========================================
 
-// Connessione a MongoDB (legge la stringa dal file .env)
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/musicaApp')
-  .then(() => console.log('Connesso con successo a MongoDB!'))
-  .catch(err => console.error('Errore di connessione al database:', err));
-
-// Avvio del server
+// ACCENDIAMO SUBITO IL SERVER EXPRESS
 app.listen(PORT, () => {
-  console.log(`Server acceso sulla porta ${PORT}: http://localhost:${PORT}`);
+  console.log(`==================================================`);
+  console.log(`SERVER EXPRESS ACCESO SULLA PORTA ${PORT}`);
+  console.log(`Pagina di registrazione: http://localhost:${PORT}/signup.html`);
+  console.log(`==================================================`);
 });
+
+// CONNESSIONE A MONGOOSE (Stringa fissa multi-nodo anti-blocco)
+console.log("Tentativo di connessione a MongoDB Atlas in corso...");
+
+const stringaAntiBlocco = 'mongodb://gditerlizzi11:pro_Ferrara_db@eventsbari-shard-00-00.nmunylx.mongodb.net:27017,eventsbari-shard-00-01.nmunylx.mongodb.net:27017,eventsbari-shard-00-02.nmunylx.mongodb.net:27017/progettoweb?ssl=true&replicaSet=atlas-9m6pqt-shard-0&authSource=admin&retryWrites=true&w=majority';
+
+mongoose.connect(stringaAntiBlocco)
+  .then(() => {
+    console.log('DATABASE CONNESSO CON SUCCESSO SU ATLAS ONLINE!');
+  })
+  .catch(err => {
+    console.error('ERRORE DI CONNESSIONE AL DB CLOUD:', err.message);
+  });
