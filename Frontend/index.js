@@ -7,12 +7,26 @@ showPasswordBtn.addEventListener("click", () => {
         password.type = "text";
         icon.classList.remove("fa-eye");
         icon.classList.add("fa-eye-slash");
-        console.log(icon);
     } else {
         password.type = "password";
         icon.classList.remove("fa-eye-slash");
         icon.classList.add("fa-eye");
-                console.log(icon);
+    }
+});
 
+// Gestione secondo occhio (Conferma Password - Solo in singup.html)
+const passwordConfirm = document.getElementById("passwordConfirm");
+const showPasswordConfirmBtn = document.getElementById("showPasswordConfirmBtn");
+
+showPasswordBtn.addEventListener("click", () => {
+    const icon = showPasswordConfirmBtn.querySelector("i, svg");
+    if(password.type === "password") {
+        password.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        password.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
     }
 });
