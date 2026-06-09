@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+    <html lang="it">
+        <head>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" href="style.css">
+            <title>My Website</title>
+            <script src="https://kit.fontawesome.com/848bf17538.js" crossorigin="anonymous"></script>
+        </head>
+
+        <body>
+            <h1> Nome sito</h1>
+
+            <div id="container">
+            <br>
+            <div id="formContainer">
+                <form id="Form">
+                   
+                    <h2>Accedi al tuo account</h2> <br>
+
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="nome.cognome@esempio.com"><br><br>
+
+
+                   <div class="form-group">
+                        <label for="password">Password:</label>
+                        <div class="password-container">
+                            <input type="password" id="password" name="password" placeholder="password">
+                            <button type="button" id="showPasswordBtn"> 
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <br><br>
+                    <button type="button" id="submitBtn">Invio</button><br><br>
+                    <p id="paragraph"> Non hai ancora un account? <a href="singup.html" target=_self>Registrati</a></p>
+
+                </form>
+
+          </div>
+        </div>
+
+        <script src="index.js"></script>
+        </body>
+    </html>
