@@ -18,7 +18,7 @@ showPasswordBtn.addEventListener("click", () => {
 const passwordConfirm = document.getElementById("passwordConfirm");
 const showPasswordConfirmBtn = document.getElementById("showPasswordConfirmBtn");
 
-showPasswordBtn.addEventListener("click", () => {
+showPasswordConfirmBtn.addEventListener("click", () => {
     const icon = showPasswordConfirmBtn.querySelector("i, svg");
     if(password.type === "password") {
         password.type = "text";
