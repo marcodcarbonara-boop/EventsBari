@@ -5,10 +5,6 @@ const path = require('path'); // Gestisce i percorsi delle cartelle
 require('dotenv').config(); /*Serve a caricare le variabili segrete (come la password del database) da un file 
                               esterno chiamato .env.*/
 
-// IMPORTA IL MODELLO UTENTE (Assicurati che il percorso del file sia corretto)
-// Se user.js si trova in una cartella chiamata 'models', usa: ./models/user
-const User = require('./user'); 
-
 const app = express(); 
 const PORT = process.env.PORT || 3000;
 
@@ -18,6 +14,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve i file statici dalla cartella Frontend
 app.use(express.static(path.join(__dirname, '../Frontend')));
+
+// =========================================================================
+// IMPORTAZIONE MODELLO (Ora che l'ambiente e 'app' sono pronti, importiamo User)
+// =========================================================================
+const User = require('./user'); 
 
 // ==========================================
 // ROTTA DI REGISTRAZIONE (POST)
@@ -51,7 +52,7 @@ app.post('/api/registrazione', async (req, res) => {
     // 5. Salviamo l'utente nel database MongoDB Atlas
     await nuovoUtente.save();
 
-    // 6. Risposta di successo (per ora testuale, poi potrete reindirizzare a una bacheca)
+    // 6. Risposta di successo
     res.status(201).send(`<h1>Registrazione completata con successo!</h1><p>Benvenuto su EventsBari, ${nuovoUtente.username}. Ora puoi effettuare il login.</p><a href="/index.html">Vai al Login</a>`);
 
   } catch (error) {
